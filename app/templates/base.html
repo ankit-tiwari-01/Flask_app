@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AWS Flask Deployment Hub{% endblock %}</title>
+    <meta name="description" content="A premium, production-ready Flask application starter template fully optimized for deployment on AWS.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body class="dark-theme">
+    <div class="glow-bg"></div>
+    
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo" id="header-logo">
+                <i class="fa-solid fa-cloud-bolt icon-glow"></i>
+                <span>AWS Flask <span class="accent-text">Hub</span></span>
+            </div>
+            <nav class="nav-links" id="main-nav">
+                <a href="#" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="#deployment" class="nav-link"><i class="fa-solid fa-server"></i> AWS Config</a>
+                <a href="/health" class="nav-link" target="_blank"><i class="fa-solid fa-heartbeat"></i> Health API</a>
+            </nav>
+            <div class="status-badge" id="env-status-badge">
+                <span class="status-dot pulsing"></span>
+                <span class="status-text">Production Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content" id="app-main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="app-footer" id="app-footer-section">
+        <div class="footer-container">
+            <p>&copy; 2026 AWS Flask Deployment Hub. Pre-configured for Elastic Beanstalk, App Runner, and ECS.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.venv/
+Dockerfile
+README.md
+task.md
+implementation_plan.md
+walkthrough.md

@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | AWS Flask Deployment Hub{% endblock %}
+
+{% block content %}
+<section class="hero-section" id="hero-banner">
+    <div class="hero-text animate-fade-in">
+        <span class="badge">Cloud-Native Starter</span>
+        <h1>Production-Grade Flask Template</h1>
+        <p>A high-performance Flask environment with built-in configurations for seamless deployment on AWS cloud infrastructure.</p>
+    </div>
+</section>
+
+<div class="dashboard-grid">
+    <!-- Environment Config Card -->
+    <div class="card glass-card fade-in-up" id="env-stats-card">
+        <div class="card-header">
+            <i class="fa-solid fa-cube card-icon"></i>
+            <h2>System Environment</h2>
+        </div>
+        <div class="card-body">
+            <ul class="stats-list">
+                <li>
+                    <span class="label">Flask Environment:</span>
+                    <span class="value badge-env {{ env }}">{{ env }}</span>
+                </li>
+                <li>
+                    <span class="label">Operating System:</span>
+                    <span class="value">{{ os_name }} ({{ os_release }})</span>
+                </li>
+                <li>
+                    <span class="label">Python Version:</span>
+                    <span class="value">{{ python_version }}</span>
+                </li>
+                <li>
+                    <span class="label">Database Type:</span>
+                    <span class="value">{{ database_uri_type }}</span>
+                </li>
+                <li>
+                    <span class="label">Server UTC Time:</span>
+                    <span class="value" id="utc-time">{{ server_time }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Live API Status Card -->
+    <div class="card glass-card fade-in-up" id="api-status-card" style="animation-delay: 0.1s;">
+        <div class="card-header">
+            <i class="fa-solid fa-bolt card-icon"></i>
+            <h2>Live API Status</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-description">Test AWS load-balancer health endpoints and sample REST APIs interactively.</p>
+            <div class="button-group">
+                <button id="btn-test-health" class="btn btn-primary"><i class="fa-solid fa-heartbeat"></i> Test Health</button>
+                <button id="btn-test-status" class="btn btn-secondary"><i class="fa-solid fa-code"></i> Test API Status</button>
+            </div>
+            <div class="api-response-box">
+                <div class="response-header">
+                    <span class="response-status" id="res-status">Idle</span>
+                    <span class="response-time" id="res-time">-- ms</span>
+                </div>
+                <pre class="code-block" id="response-content">Click a button to send an API request...</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- AWS Readiness Checklist -->
+    <div class="card glass-card fade-in-up" id="readiness-card" style="animation-delay: 0.2s;">
+        <div class="card-header">
+            <i class="fa-solid fa-shield-halved card-icon"></i>
+            <h2>AWS Production Audit</h2>
+        </div>
+        <div class="card-body">
+            <ul class="checklist">
+                <li class="checked">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <strong>WSGI Entrypoint</strong>
+                        <p><code>application.py</code> maps <code>application = create_app()</code> for Elastic Beanstalk.</p>
+                    </div>
+                </li>
+                <li class="checked">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <strong>Containerization</strong>
+                        <p>Slim multi-stage <code>Dockerfile</code> configured with a non-root user.</p>
+                    </div>
+                </li>
+                <li class="checked">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <strong>Health Checks</strong>
+                        <p>Active <code>/health</code> endpoint to support AWS target groups.</p>
+                    </div>
+                </li>
+                <li class="checked">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <strong>Config Separation</strong>
+                        <p>Loads secrets & database URLs from environment variables.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section id="deployment" class="deployment-section fade-in-up" style="animation-delay: 0.3s;">
+    <div class="section-title">
+        <i class="fa-brands fa-aws"></i>
+        <h2>AWS Deployment Quickstart</h2>
+        <p>Follow these standard blueprints to deploy this Flask application to your choice of AWS hosting service.</p>
+    </div>
+
+    <div class="tabs" id="deployment-tabs">
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="beanstalk" id="tab-btn-beanstalk"><i class="fa-solid fa-seedling"></i> Elastic Beanstalk</button>
+            <button class="tab-btn" data-tab="apprunner" id="tab-btn-apprunner"><i class="fa-solid fa-plane-deployment"></i> App Runner</button>
+            <button class="tab-btn" data-tab="ecs" id="tab-btn-ecs"><i class="fa-solid fa-boxes-stacked"></i> ECS Fargate</button>
+        </div>
+        <div class="tab-content">
+            <!-- Beanstalk Tab -->
+            <div class="tab-pane active" id="tab-beanstalk">
+                <h3>Deploy via Elastic Beanstalk CLI</h3>
+                <p>AWS Elastic Beanstalk reads <code>requirements.txt</code>, builds packages, and uses Gunicorn automatically with <code>application.py</code>.</p>
+                <div class="command-box">
+                    <button class="copy-btn" data-copy="eb-deploy" id="copy-eb-btn"><i class="fa-regular fa-copy"></i></button>
+                    <pre><code id="eb-deploy"># Initialize EB application (select Python platform)
+eb init -p python-3.11 my-flask-app
+
+# Create environment (spins up Load Balancer & EC2 instances)
+eb create flask-env
+
+# Deploy code updates
+eb deploy
+
+# Open application in browser
+eb open</code></pre>
+                </div>
+            </div>
+
+            <!-- App Runner Tab -->
+            <div class="tab-pane" id="tab-apprunner">
+                <h3>Deploy via AWS App Runner</h3>
+                <p>AWS App Runner automatically builds your container image from Git or Amazon ECR and handles TLS certificates, scaling, and load balancing.</p>
+                <div class="command-box">
+                    <button class="copy-btn" data-copy="ar-deploy" id="copy-ar-btn"><i class="fa-regular fa-copy"></i></button>
+                    <pre><code id="ar-deploy"># Build your local docker image
+docker build -t flask-aws-app .
+
+# Tag and push your image to Amazon ECR (Elastic Container Registry)
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com
+docker tag flask-aws-app:latest &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com/flask-aws-app:latest
+docker push &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com/flask-aws-app:latest
+
+# In AWS App Runner Console:
+# Create service -> Select ECR Repository -> Port 8080 -> Start Service.</code></pre>
+                </div>
+            </div>
+
+            <!-- ECS Tab -->
+            <div class="tab-pane" id="tab-ecs">
+                <h3>Deploy to AWS ECS Fargate</h3>
+                <p>Use ECS Fargate to run your container serverless. This gives you complete network, security, and scaling configuration control.</p>
+                <div class="command-box">
+                    <button class="copy-btn" data-copy="ecs-deploy" id="copy-ecs-btn"><i class="fa-regular fa-copy"></i></button>
+                    <pre><code id="ecs-deploy"># Create cluster
+aws ecs create-cluster --cluster-name flask-production
+
+# Register ECS Task Definition (configures CPU, memory, Docker image)
+aws ecs register-task-definition --cli-input-json file://ecs-task-def.json
+
+# Create Fargate Service with Load Balancer mapping
+aws ecs create-service --cluster flask-production --service-name flask-web-service --task-definition flask-aws-app --desired-count 2 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-12345678],securityGroups=[sg-12345678],assignPublicIp=ENABLED}"</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
