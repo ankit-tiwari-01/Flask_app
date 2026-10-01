@@ -1,180 +1,323 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard | AWS Flask Deployment Hub{% endblock %}
+{% block title %}Ankit Tiwari | Cloud & DevOps Engineer Portfolio{% endblock %}
 
 {% block content %}
-<section class="hero-section" id="hero-banner">
-    <div class="hero-text animate-fade-in">
-        <span class="badge">Cloud-Native Starter</span>
-        <h1>Production-Grade Flask Template</h1>
-        <p>A high-performance Flask environment with built-in configurations for seamless deployment on AWS cloud infrastructure.</p>
+<!-- Hero Section -->
+<section class="hero-section" id="about">
+    <div class="hero-grid">
+        <div class="hero-text animate-fade-in">
+            <div class="badge-row">
+                <span class="badge"><i class="fa-solid fa-cloud"></i> Cloud &amp; DevOps Engineer</span>
+                <span class="badge badge-aws"><i class="fa-brands fa-aws"></i> AWS Certified</span>
+            </div>
+            <h1 class="hero-title">Hi, I'm <span class="name-highlight">Ankit Tiwari</span></h1>
+            <p class="hero-subtitle">Architecting resilient cloud infrastructure, automating CI/CD pipelines, and building scalable full-stack applications with <strong>AWS ECS Fargate, Terraform, Docker &amp; Python Flask</strong>.</p>
+            
+            <div class="hero-cta-group">
+                <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> Explore Projects</a>
+                <a href="#live-architecture" class="btn btn-secondary"><i class="fa-solid fa-server"></i> View Live AWS Infra</a>
+                <a href="https://github.com/ankit-tiwari-01/Flask_app" target="_blank" class="btn btn-outline"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+            </div>
+
+            <!-- Quick Stats Strip -->
+            <div class="quick-stats-strip">
+                <div class="stat-pill">
+                    <span class="stat-num">99.99%</span>
+                    <span class="stat-label">Uptime Target</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">IaC Automated</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-num">&lt;30s</span>
+                    <span class="stat-label">CI/CD Deploy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-card-wrapper fade-in-up">
+            <div class="profile-card glass-card">
+                <div class="profile-header">
+                    <div class="avatar-circle">
+                        <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h3>Ankit Tiwari</h3>
+                        <p class="role-tag">DevOps &amp; Cloud Architect</p>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-spec-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Cloud Infrastructure / Remote</span>
+                    </div>
+                    <div class="profile-spec-item">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Specialization: AWS, Containers, CI/CD</span>
+                    </div>
+                    <div class="profile-spec-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Security: Zero-Trust, Least-Privilege IAM</span>
+                    </div>
+                </div>
+                <div class="profile-footer">
+                    <div class="status-indicator">
+                        <span class="status-dot pulsing"></span>
+                        <span>Available for new projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<div class="dashboard-grid">
-    <!-- Environment Config Card -->
-    <div class="card glass-card fade-in-up" id="env-stats-card">
-        <div class="card-header">
-            <i class="fa-solid fa-cube card-icon"></i>
-            <h2>System Environment</h2>
-        </div>
-        <div class="card-body">
-            <ul class="stats-list">
-                <li>
-                    <span class="label">Flask Environment:</span>
-                    <span class="value badge-env {{ env }}">{{ env }}</span>
-                </li>
-                <li>
-                    <span class="label">Operating System:</span>
-                    <span class="value">{{ os_name }} ({{ os_release }})</span>
-                </li>
-                <li>
-                    <span class="label">Python Version:</span>
-                    <span class="value">{{ python_version }}</span>
-                </li>
-                <li>
-                    <span class="label">Database Type:</span>
-                    <span class="value">{{ database_uri_type }}</span>
-                </li>
-                <li>
-                    <span class="label">Server UTC Time:</span>
-                    <span class="value" id="utc-time">{{ server_time }}</span>
-                </li>
-            </ul>
-        </div>
+<!-- Featured Projects Section -->
+<section id="projects" class="section-wrapper fade-in-up">
+    <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-folder-open"></i> Portfolio Showcase</div>
+        <h2 class="section-heading">Featured Cloud &amp; DevOps Projects</h2>
+        <p class="section-subtext">Production-grade deployments demonstrating Infrastructure as Code, container orchestration, and automated pipelines.</p>
     </div>
 
-    <!-- Live API Status Card -->
-    <div class="card glass-card fade-in-up" id="api-status-card" style="animation-delay: 0.1s;">
-        <div class="card-header">
-            <i class="fa-solid fa-bolt card-icon"></i>
-            <h2>Live API Status</h2>
-        </div>
-        <div class="card-body">
-            <p class="card-description">Test AWS load-balancer health endpoints and sample REST APIs interactively.</p>
-            <div class="button-group">
-                <button id="btn-test-health" class="btn btn-primary"><i class="fa-solid fa-heartbeat"></i> Test Health</button>
-                <button id="btn-test-status" class="btn btn-secondary"><i class="fa-solid fa-code"></i> Test API Status</button>
-            </div>
-            <div class="api-response-box">
-                <div class="response-header">
-                    <span class="response-status" id="res-status">Idle</span>
-                    <span class="response-time" id="res-time">-- ms</span>
+    <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card glass-card">
+            <div class="project-card-header">
+                <div class="project-badge"><i class="fa-solid fa-circle-check"></i> Current Live App</div>
+                <div class="project-links">
+                    <a href="https://github.com/ankit-tiwari-01/Flask_app" target="_blank" title="Source Code"><i class="fa-brands fa-github"></i></a>
+                    <a href="/health" target="_blank" title="Live Health API"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
-                <pre class="code-block" id="response-content">Click a button to send an API request...</pre>
+            </div>
+            <div class="project-icon-box aws-theme">
+                <i class="fa-brands fa-aws"></i>
+            </div>
+            <h3>AWS ECS Fargate CI/CD Deployment Hub</h3>
+            <p>End-to-end cloud deployment on AWS Fargate with Application Load Balancer, Amazon RDS PostgreSQL, Jenkins automated pipeline, and Terraform Infrastructure as Code.</p>
+            <div class="project-tags">
+                <span>AWS ECS Fargate</span>
+                <span>Terraform</span>
+                <span>Jenkins</span>
+                <span>Docker</span>
+                <span>PostgreSQL</span>
+                <span>ALB</span>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass-card">
+            <div class="project-card-header">
+                <div class="project-badge"><i class="fa-solid fa-code-branch"></i> CI/CD Pipeline</div>
+                <div class="project-links">
+                    <a href="https://github.com/ankit-tiwari-01/Flask_app/blob/main/Jenkinsfile" target="_blank" title="Jenkinsfile"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="project-icon-box jenkins-theme">
+                <i class="fa-brands fa-jenkins"></i>
+            </div>
+            <h3>Zero-Downtime Multi-Stage CI/CD Pipeline</h3>
+            <p>8-stage Jenkins declarative pipeline automating Linting (flake8), Unit Testing (pytest with JUnit reports), Docker multi-stage builds, ECR image scanning, and rolling ECS deployment.</p>
+            <div class="project-tags">
+                <span>Jenkins</span>
+                <span>Docker</span>
+                <span>Amazon ECR</span>
+                <span>Pytest</span>
+                <span>Flake8</span>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass-card">
+            <div class="project-card-header">
+                <div class="project-badge"><i class="fa-solid fa-cubes"></i> Infrastructure as Code</div>
+                <div class="project-links">
+                    <a href="https://github.com/ankit-tiwari-01/Flask_app/tree/main/terraform" target="_blank" title="Terraform Code"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+            <div class="project-icon-box terraform-theme">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+            <h3>Modular Terraform AWS Cloud Architecture</h3>
+            <p>Fully automated multi-AZ VPC, public/private subnets, NAT Gateway, security groups, SSM Parameter Store secrets, CloudWatch logs, and auto-scaling policies defined via Terraform.</p>
+            <div class="project-tags">
+                <span>Terraform</span>
+                <span>AWS VPC</span>
+                <span>SSM Store</span>
+                <span>CloudWatch</span>
+                <span>Auto-Scaling</span>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- AWS Readiness Checklist -->
-    <div class="card glass-card fade-in-up" id="readiness-card" style="animation-delay: 0.2s;">
-        <div class="card-header">
-            <i class="fa-solid fa-shield-halved card-icon"></i>
-            <h2>AWS Production Audit</h2>
-        </div>
-        <div class="card-body">
-            <ul class="checklist">
-                <li class="checked">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>WSGI Entrypoint</strong>
-                        <p><code>application.py</code> maps <code>application = create_app()</code> for Elastic Beanstalk.</p>
-                    </div>
-                </li>
-                <li class="checked">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>Containerization</strong>
-                        <p>Slim multi-stage <code>Dockerfile</code> configured with a non-root user.</p>
-                    </div>
-                </li>
-                <li class="checked">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>Health Checks</strong>
-                        <p>Active <code>/health</code> endpoint to support AWS target groups.</p>
-                    </div>
-                </li>
-                <li class="checked">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <div>
-                        <strong>Config Separation</strong>
-                        <p>Loads secrets & database URLs from environment variables.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<section id="deployment" class="deployment-section fade-in-up" style="animation-delay: 0.3s;">
-    <div class="section-title">
-        <i class="fa-brands fa-aws"></i>
-        <h2>AWS Deployment Quickstart</h2>
-        <p>Follow these standard blueprints to deploy this Flask application to your choice of AWS hosting service.</p>
+<!-- Skills & Tech Matrix -->
+<section id="skills" class="section-wrapper fade-in-up">
+    <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-microchip"></i> Technical Skills</div>
+        <h2 class="section-heading">Core Competencies &amp; Tooling</h2>
+        <p class="section-subtext">Modern tools and practices leveraged to build secure, scalable, and automated cloud platforms.</p>
     </div>
 
-    <div class="tabs" id="deployment-tabs">
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="beanstalk" id="tab-btn-beanstalk"><i class="fa-solid fa-seedling"></i> Elastic Beanstalk</button>
-            <button class="tab-btn" data-tab="apprunner" id="tab-btn-apprunner"><i class="fa-solid fa-plane-deployment"></i> App Runner</button>
-            <button class="tab-btn" data-tab="ecs" id="tab-btn-ecs"><i class="fa-solid fa-boxes-stacked"></i> ECS Fargate</button>
+    <div class="skills-matrix-grid">
+        <div class="skill-category glass-card">
+            <div class="category-header">
+                <i class="fa-brands fa-aws cat-icon"></i>
+                <h3>Cloud Infrastructure (AWS)</h3>
+            </div>
+            <div class="skill-chips">
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> ECS Fargate</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> VPC &amp; Subnets</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> ALB / Load Balancers</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> RDS PostgreSQL</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Amazon ECR</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> SSM Parameter Store</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> CloudWatch Logs</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> IAM Roles &amp; Security</span>
+            </div>
         </div>
-        <div class="tab-content">
-            <!-- Beanstalk Tab -->
-            <div class="tab-pane active" id="tab-beanstalk">
-                <h3>Deploy via Elastic Beanstalk CLI</h3>
-                <p>AWS Elastic Beanstalk reads <code>requirements.txt</code>, builds packages, and uses Gunicorn automatically with <code>application.py</code>.</p>
-                <div class="command-box">
-                    <button class="copy-btn" data-copy="eb-deploy" id="copy-eb-btn"><i class="fa-regular fa-copy"></i></button>
-                    <pre><code id="eb-deploy"># Initialize EB application (select Python platform)
-eb init -p python-3.11 my-flask-app
 
-# Create environment (spins up Load Balancer & EC2 instances)
-eb create flask-env
+        <div class="skill-category glass-card">
+            <div class="category-header">
+                <i class="fa-solid fa-gears cat-icon"></i>
+                <h3>DevOps &amp; Automation</h3>
+            </div>
+            <div class="skill-chips">
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Terraform (IaC)</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Jenkins CI/CD</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Docker Containers</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Bash Shell Scripting</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Git Version Control</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Automated Testing</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Rolling Updates</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Circuit Breaker Rollbacks</span>
+            </div>
+        </div>
 
-# Deploy code updates
-eb deploy
+        <div class="skill-category glass-card">
+            <div class="category-header">
+                <i class="fa-brands fa-python cat-icon"></i>
+                <h3>Backend &amp; Full-Stack</h3>
+            </div>
+            <div class="skill-chips">
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Python 3.11</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Flask 3.0</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Gunicorn WSGI</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> RESTful APIs</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> PostgreSQL</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Pytest &amp; Flake8</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> HTML5 &amp; Modern CSS</span>
+                <span class="skill-chip"><i class="fa-solid fa-check"></i> Vanilla JavaScript</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-# Open application in browser
-eb open</code></pre>
+<!-- Live AWS Architecture & System Environment Monitor -->
+<section id="live-architecture" class="section-wrapper fade-in-up">
+    <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-network-wired"></i> Live Cloud Diagnostics</div>
+        <h2 class="section-heading">Production-Grade Flask Template &amp; System Environment</h2>
+        <p class="section-subtext">Real-time environment parameters collected directly from the active AWS container instance.</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Environment Config Card -->
+        <div class="card glass-card" id="env-stats-card">
+            <div class="card-header">
+                <i class="fa-solid fa-cube card-icon"></i>
+                <h2>System Environment</h2>
+            </div>
+            <div class="card-body">
+                <ul class="stats-list">
+                    <li>
+                        <span class="label">Flask Environment:</span>
+                        <span class="value badge-env {{ env }}">{{ env }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Operating System:</span>
+                        <span class="value">{{ os_name }} ({{ os_release }})</span>
+                    </li>
+                    <li>
+                        <span class="label">Python Version:</span>
+                        <span class="value">{{ python_version }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Database Target:</span>
+                        <span class="value">{{ database_uri_type }}</span>
+                    </li>
+                    <li>
+                        <span class="label">Deployment Platform:</span>
+                        <span class="value accent-text-solid">AWS ECS Fargate</span>
+                    </li>
+                    <li>
+                        <span class="label">Server UTC Time:</span>
+                        <span class="value" id="utc-time">{{ server_time }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interactive Live API Console -->
+        <div class="card glass-card" id="api-playground">
+            <div class="card-header">
+                <i class="fa-solid fa-bolt card-icon"></i>
+                <h2>Interactive API Console</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Directly test the active AWS Load Balancer health check and live REST endpoints.</p>
+                <div class="button-group">
+                    <button id="btn-test-health" class="btn btn-primary"><i class="fa-solid fa-heartbeat"></i> Query /health</button>
+                    <button id="btn-test-status" class="btn btn-secondary"><i class="fa-solid fa-code"></i> Query /api/status</button>
+                </div>
+                <div class="api-response-box">
+                    <div class="response-header">
+                        <span class="response-status" id="res-status">Ready</span>
+                        <span class="response-time" id="res-time">-- ms</span>
+                    </div>
+                    <pre class="code-block" id="response-content">Click an endpoint button above to test real-time response from AWS ALB...</pre>
                 </div>
             </div>
+        </div>
 
-            <!-- App Runner Tab -->
-            <div class="tab-pane" id="tab-apprunner">
-                <h3>Deploy via AWS App Runner</h3>
-                <p>AWS App Runner automatically builds your container image from Git or Amazon ECR and handles TLS certificates, scaling, and load balancing.</p>
-                <div class="command-box">
-                    <button class="copy-btn" data-copy="ar-deploy" id="copy-ar-btn"><i class="fa-regular fa-copy"></i></button>
-                    <pre><code id="ar-deploy"># Build your local docker image
-docker build -t flask-aws-app .
-
-# Tag and push your image to Amazon ECR (Elastic Container Registry)
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com
-docker tag flask-aws-app:latest &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com/flask-aws-app:latest
-docker push &lt;aws_account_id&gt;.dkr.ecr.us-east-1.amazonaws.com/flask-aws-app:latest
-
-# In AWS App Runner Console:
-# Create service -> Select ECR Repository -> Port 8080 -> Start Service.</code></pre>
-                </div>
+        <!-- Production Architecture Checklist -->
+        <div class="card glass-card" id="readiness-card">
+            <div class="card-header">
+                <i class="fa-solid fa-shield-halved card-icon"></i>
+                <h2>AWS Production Audit</h2>
             </div>
-
-            <!-- ECS Tab -->
-            <div class="tab-pane" id="tab-ecs">
-                <h3>Deploy to AWS ECS Fargate</h3>
-                <p>Use ECS Fargate to run your container serverless. This gives you complete network, security, and scaling configuration control.</p>
-                <div class="command-box">
-                    <button class="copy-btn" data-copy="ecs-deploy" id="copy-ecs-btn"><i class="fa-regular fa-copy"></i></button>
-                    <pre><code id="ecs-deploy"># Create cluster
-aws ecs create-cluster --cluster-name flask-production
-
-# Register ECS Task Definition (configures CPU, memory, Docker image)
-aws ecs register-task-definition --cli-input-json file://ecs-task-def.json
-
-# Create Fargate Service with Load Balancer mapping
-aws ecs create-service --cluster flask-production --service-name flask-web-service --task-definition flask-aws-app --desired-count 2 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-12345678],securityGroups=[sg-12345678],assignPublicIp=ENABLED}"</code></pre>
-                </div>
+            <div class="card-body">
+                <ul class="checklist">
+                    <li class="checked">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Zero-Downtime Deployment</strong>
+                            <p>Rolling updates via ECS with automated circuit breaker rollback.</p>
+                        </div>
+                    </li>
+                    <li class="checked">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Hardened Containers</strong>
+                            <p>Non-root user execution (`appuser`) with multi-stage slim builds.</p>
+                        </div>
+                    </li>
+                    <li class="checked">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Target Group Health Checks</strong>
+                            <p>Continuous `/health` probe marks unhealthy tasks for replacement.</p>
+                        </div>
+                    </li>
+                    <li class="checked">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Automated CI/CD</strong>
+                            <p>Git-triggered Jenkins pipeline builds, tests, scans, and deploys.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

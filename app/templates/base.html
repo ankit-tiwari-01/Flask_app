@@ -3,47 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}AWS Flask Deployment Hub{% endblock %}</title>
-    <meta name="description" content="A premium, production-ready Flask application starter template fully optimized for deployment on AWS.">
+    <title>{% block title %}Ankit Tiwari | Cloud & DevOps Engineer{% endblock %}</title>
+    <meta name="description" content="Cloud & DevOps Engineer Portfolio showcasing AWS ECS Fargate, Terraform IaC, Jenkins CI/CD, and Full-Stack Flask Architecture.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Inline SVG Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 <body class="dark-theme">
     <div class="glow-bg"></div>
     
+    <!-- Navigation Header -->
     <header class="app-header">
         <div class="header-container">
-            <div class="logo" id="header-logo">
-                <i class="fa-solid fa-cloud-bolt icon-glow"></i>
-                <span>AWS Flask <span class="accent-text">Hub</span></span>
-            </div>
+            <a href="#" class="logo" id="header-logo">
+                <div class="logo-icon-wrapper">
+                    <i class="fa-solid fa-cloud-bolt"></i>
+                </div>
+                <span>Ankit<span class="accent-text">.dev</span></span>
+            </a>
             <nav class="nav-links" id="main-nav">
-                <a href="#" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                <a href="#deployment" class="nav-link"><i class="fa-solid fa-server"></i> AWS Config</a>
-                <a href="/health" class="nav-link" target="_blank"><i class="fa-solid fa-heartbeat"></i> Health API</a>
+                <a href="#about" class="nav-link"><i class="fa-solid fa-user-astronaut"></i> About</a>
+                <a href="#projects" class="nav-link"><i class="fa-solid fa-cubes-stacked"></i> Projects</a>
+                <a href="#skills" class="nav-link"><i class="fa-solid fa-microchip"></i> Tech Stack</a>
+                <a href="#live-architecture" class="nav-link"><i class="fa-solid fa-server"></i> AWS Infra</a>
+                <a href="#api-playground" class="nav-link"><i class="fa-solid fa-bolt"></i> API Console</a>
             </nav>
-            <div class="status-badge" id="env-status-badge">
-                <span class="status-dot pulsing"></span>
-                <span class="status-text">Production Ready</span>
+            <div class="header-actions">
+                <div class="status-badge" id="env-status-badge">
+                    <span class="status-dot pulsing"></span>
+                    <span class="status-text">Production Ready</span>
+                </div>
+                <a href="https://github.com/ankit-tiwari-01/Flask_app" target="_blank" class="btn-github-header" title="GitHub Repository">
+                    <i class="fa-brands fa-github"></i>
+                </a>
             </div>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="main-content" id="app-main-content">
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Footer -->
     <footer class="app-footer" id="app-footer-section">
         <div class="footer-container">
-            <p>&copy; 2026 AWS Flask Deployment Hub. Pre-configured for Elastic Beanstalk, App Runner, and ECS.</p>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon-wrapper mini"><i class="fa-solid fa-cloud-bolt"></i></div>
+                        <span>Ankit<span class="accent-text">.dev</span></span>
+                    </div>
+                    <p>Building high-availability cloud architecture, automated CI/CD pipelines, and modern web applications on AWS.</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Quick Links</h4>
+                    <a href="#about">About Me</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#live-architecture">AWS Infrastructure</a>
+                    <a href="/health" target="_blank">Health Check API</a>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Social & Code</h4>
+                    <a href="https://github.com/ankit-tiwari-01/Flask_app" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="/api/status" target="_blank"><i class="fa-solid fa-code"></i> Status Endpoint</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Ankit Tiwari. Powered by Production-Grade Flask Template &amp; Automated AWS ECS Pipeline.</p>
+                <div class="footer-badge">
+                    <span>⚡ System Environment: Live &amp; Healthy</span>
+                </div>
+            </div>
         </div>
     </footer>
 
