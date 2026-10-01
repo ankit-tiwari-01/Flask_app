@@ -1,0 +1,40 @@
+# =============================================================================
+# terraform.tfvars.example
+#
+# Copy this file to terraform.tfvars and fill in your values:
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# IMPORTANT: Never commit terraform.tfvars to version control!
+# =============================================================================
+
+aws_region  = "us-east-1"
+app_name    = "flask-app"
+environment = "production"
+
+# ---- Networking ----
+vpc_cidr             = "10.0.0.0/16"
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.10.0/24", "10.0.20.0/24"]
+availability_zones   = ["us-east-1a", "us-east-1b"]
+
+# ---- ECS ----
+container_port = 8080
+desired_count  = 2
+cpu            = 256
+memory         = 512
+
+# ---- RDS ----
+db_instance_class = "db.t3.micro"
+db_name           = "flask_app_db"
+db_username       = "flask_admin"
+db_password       = "Ankit123"
+
+# ---- Application Secrets ----
+flask_secret_key = "'SECRET_KEY', 'dev-secret-key-change-in-production'"
+
+# ---- Tags ----
+common_tags = {
+  Project     = "flask-app"
+  Environment = "production"
+  ManagedBy   = "terraform"
+}

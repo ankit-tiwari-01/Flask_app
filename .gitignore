@@ -25,3 +25,14 @@ desktop.ini
 dist/
 build/
 *.egg-info/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/tfplan
+terraform/.terraform.lock.hcl
+terraform/terraform.tfvars
+
+# Reports
+reports/
